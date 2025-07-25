@@ -5,7 +5,7 @@ import { Product } from "@/store/cart";
 export const getProducts = async (): Promise<Product[]> => {
   try {
     const res = await fetch("https://fakestoreapi.com/products", {
-      cache: "no-store",
+      next: { revalidate: 3600 }
     });
 
     if (!res.ok) {
@@ -23,7 +23,7 @@ export const getProducts = async (): Promise<Product[]> => {
 export const getProduct = async (id: string): Promise<Product> => {
   try {
     const res = await fetch(`https://fakestoreapi.com/products/${id}`, {
-      cache: "no-store",
+      next: { revalidate: 3600 }
     });
 
     if (!res.ok) {
